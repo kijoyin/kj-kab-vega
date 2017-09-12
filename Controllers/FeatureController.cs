@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using vega.ViewModels;
 
 namespace vega.Controllers
 {
@@ -10,9 +11,18 @@ namespace vega.Controllers
     public class FeatureController:Controller
     {
         [HttpGet]
-        public IEnumerable<string> GetAll()
+        public IEnumerable<Feature> GetAll()
         {
-            return new List<string>(){"Reverse Camera","Windscreen","4WD"};
+            return new List<Feature>(){GetFeature("Reverse Camera"),GetFeature("Windscreen"),GetFeature("4WD")};
+        }
+
+        public Feature GetFeature(string name)
+        {
+            return new Feature()
+            {
+                Id = Guid.NewGuid(),
+                Name = name
+            };
         }
         
     }

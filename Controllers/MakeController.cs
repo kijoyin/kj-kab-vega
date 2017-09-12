@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using vega.ViewModels;
 
 namespace vega.Controllers
 {
@@ -10,9 +11,18 @@ namespace vega.Controllers
     public class MakeController:Controller
     {
         [HttpGet]
-        public IEnumerable<string> GetAll()
+        public IEnumerable<Make> GetAll()
         {
-            return new List<string>(){"Kia","Ford","Toyotta"};
+            return new List<Make>(){GetMake("KIA"),GetMake("Tayota"),GetMake("Ford")};
+        }
+
+        public Make GetMake(string name)
+        {
+            return new Make()
+            {
+                Id = Guid.NewGuid(),
+                Name = name
+            };
         }
         
     }
